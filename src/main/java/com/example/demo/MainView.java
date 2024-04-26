@@ -3,6 +3,7 @@ package com.example.demo;
 import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.ai.chat.StreamingChatClient;
 import org.springframework.ai.chat.messages.*;
@@ -22,9 +23,9 @@ class MainView extends VerticalLayout {
 
     MainView(StreamingChatClient chatClient) {
         add(messageScroller, messageInput);
-        setHeightFull();
+        setSizeFull();
         setMargin(false);
-        messageScroller.setHeightFull();
+        messageScroller.setSizeFull();
         messageInput.setWidthFull();
 
         // Add system message to help the AI to behave
@@ -37,19 +38,13 @@ class MainView extends VerticalLayout {
 
             // Placeholder message for the upcoming AI reply
             MarkdownMessage reply = new MarkdownMessage("Assistant");
-            StringBuffer lastMessage = new StringBuffer();
             messageList.add(reply);
 
             // Ask AI and stream back the reply to UI
             Prompt prompt = new Prompt(chatHistory);
             chatClient.stream(prompt)
-                    .doOnComplete(() -> chatHistory.add(new AssistantMessage(lastMessage.toString())))
-                    .subscribe(chatResponse -> {
-                        String md = chatResponse.getResult().getOutput().getContent();
-                        md = md != null? md : ""; // replace null output with empty string
-                        reply.appendMarkdownAsync(md);
-                        lastMessage.append(md);
-                    });
+                    .doOnComplete(() -> chatHistory.add(new AssistantMessage(reply.getMarkdown())))
+                    .subscribe(cr -> reply.appendMarkdownAsync(cr.getResult().getOutput().getContent()));
             reply.scrollIntoView();
         });
     }
