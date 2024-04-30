@@ -16,5 +16,5 @@ This project is a Spring Boot application that integrates a Chat UI powered by O
 ## Running the Application
 
 ```
-OPEN_AI_API_KEY=<your api key here> mvn spring-boot:run
+OPENAI_API_KEY=<your api key here> mvn spring-boot:run
 ```
