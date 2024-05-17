@@ -7,14 +7,14 @@ RUN microdnf update -y && \
 
 WORKDIR /usr/src/app
 
-# Copy rest of the dependencies.
+# Copy rest of the dependencies from pom.xml.
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
 # Copy the source code
 COPY . .
 
-## Do the build
+# Do the build using production profile
 RUN mvn clean install -Pproduction
 
 # Second stage: Lightweight jdk-slim image
@@ -29,7 +29,7 @@ USER appuser
 WORKDIR /app
 
 # Copy the native binary from the build stage
-COPY --from=build /usr/src/app/target/idle-demo-*.jar /app/app.jar
+COPY --from=build /usr/src/app/target/*.jar /app/app.jar
 
 # Run the application
 EXPOSE 8080
