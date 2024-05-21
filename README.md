@@ -1,12 +1,13 @@
 # Minimal Chat application using Spring AI
 
-This project is a Java application that integrates a Chat UI powered by Ollama using Vaadin UI. It provides a responsive interface for interacting with Ollama's conversational models.
+This project is a Java application that integrates a Chat UI powered by [Ollama](https://ollama.com/) Mistral LLM model using and using [Vaadin UI](https://vaadin.com/flow). It provides a responsive interface for interacting with Ollama's conversational models.
+The project is intended as starting point for building your own Java LLM applications. [Spring AI](https://docs.spring.io/spring-ai/reference/index.html) helps you to switch between different LLM provides. 
 
-<img width="504" alt="vaadin-spring-ai-open-ai-chat" src="https://github.com/samie/spring-ai-chat/assets/991105/d7216455-f28e-4d34-8cd0-f7f1074f6087">
+<img width="504" alt="vaadin-spring-ai-ollama-ai-chat" src="https://github.com/samie/spring-ai-chat/assets/991105/d7216455-f28e-4d34-8cd0-f7f1074f6087">
 
 ## Features
 - Full-stack application with Vaadin frontend and Spring Boot backend.
-- Real-time chatting capability using local Ollama in Docker container.
+- Real-time chatting capability using local Ollama in a local Docker container.
 - Dynamic message streaming and display of Markdown.
 
 ## Prerequisites
