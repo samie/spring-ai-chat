@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<vaadin.version>24.3.12</vaadin.version>
+		<spring-ai.version>1.0.0-M1</spring-ai.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -55,7 +56,6 @@
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
-			<version>0.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>in.virit</groupId>
@@ -70,6 +70,13 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.ai</groupId>
+				<artifactId>spring-ai-bom</artifactId>
+				<version>${spring-ai.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-bom</artifactId>
