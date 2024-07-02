@@ -3,7 +3,6 @@ package com.example.demo;
 import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.ai.chat.StreamingChatClient;
 import org.springframework.ai.chat.messages.*;
