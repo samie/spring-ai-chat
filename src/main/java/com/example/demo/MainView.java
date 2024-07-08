@@ -4,11 +4,16 @@ import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.*;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.stereotype.Service;
+import org.testcontainers.ollama.OllamaContainer;
 import org.vaadin.firitin.components.messagelist.MarkdownMessage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Route("") // map view to the root
@@ -20,7 +25,7 @@ public class MainView extends VerticalLayout {
     Scroller messageScroller = new Scroller(messageList);
     MessageInput messageInput = new MessageInput();
 
-    public MainView(ChatClient.Builder chatClientBuilder) {
+    public MainView(OllamaService ollamaService) {
         add(messageScroller, messageInput);
         setSizeFull();
         setMargin(false);
@@ -31,7 +36,7 @@ public class MainView extends VerticalLayout {
         chatHistory.add(new SystemMessage("Answer politely to user. When user asks you about Vaadin, reply in bro style. Always show a piece a code."));
 
         // Init the client
-        ChatClient chatClient = chatClientBuilder.build();
+        ChatClient chatClient = ollamaService.getChatClient();
 
         // Pass user input to chatClient
         messageInput.addSubmitListener(ev -> {
