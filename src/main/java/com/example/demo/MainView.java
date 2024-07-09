@@ -3,17 +3,14 @@ package com.example.demo;
 import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.router.Route;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.*;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.stereotype.Service;
-import org.testcontainers.ollama.OllamaContainer;
 import org.vaadin.firitin.components.messagelist.MarkdownMessage;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Route("") // map view to the root
@@ -39,7 +36,7 @@ public class MainView extends VerticalLayout {
         messageInput.addSubmitListener(ev -> {
             // Add use input as markdown message
             chatHistory.add(new UserMessage(ev.getValue()));
-            messageList.add(new MarkdownMessage(ev.getValue(),"Me"));
+            messageList.add(new MarkdownMessage(ev.getValue(), "Me"));
 
             // Placeholder message for the upcoming AI reply
             MarkdownMessage reply = new MarkdownMessage("Assistant");
