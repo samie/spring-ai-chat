@@ -54,4 +54,9 @@ public class MainView extends VerticalLayout {
             reply.scrollIntoView();
         });
     }
+
+    @Push
+    public static class AppShellConfig implements AppShellConfigurator {
+    }
+
 }
