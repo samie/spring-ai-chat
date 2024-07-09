@@ -25,7 +25,7 @@ public class MainView extends VerticalLayout {
     Scroller messageScroller = new Scroller(messageList);
     MessageInput messageInput = new MessageInput();
 
-    public MainView(OllamaService ollamaService) {
+    public MainView(ChatClient.Builder chatClient) {
         add(messageScroller, messageInput);
         setSizeFull();
         setMargin(false);
@@ -34,9 +34,6 @@ public class MainView extends VerticalLayout {
 
         // Add system message to help the AI to behave
         chatHistory.add(new SystemMessage("Answer politely to user. When user asks you about Vaadin, reply in bro style. Always show a piece a code."));
-
-        // Init the client
-        ChatClient chatClient = ollamaService.getChatClient();
 
         // Pass user input to chatClient
         messageInput.addSubmitListener(ev -> {
