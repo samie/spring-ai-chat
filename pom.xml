@@ -65,15 +65,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>ollama</artifactId>
+			<scope>test</scope>
 		</dependency>
-		<dependency> <!-- upgrade to avoid CVE -->
+		<dependency> <!-- upgrade to avoid CVE in Testcontainers -->
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-compress</artifactId>
 			<version>1.26.0</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
