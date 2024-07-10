@@ -72,12 +72,25 @@
 			<artifactId>ollama</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency> <!-- upgrade to avoid CVE in Testcontainers -->
+		<!-- Fix CVE-2024-22271 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-function-context</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+		<!-- Fix CVE-2024-26308-->
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-compress</artifactId>
-			<version>1.26.0</version>
-			<scope>test</scope>
+			<version>1.26.1</version>
 		</dependency>
+		<!-- Fix CVE-2024-34750 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>10.1.25</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
