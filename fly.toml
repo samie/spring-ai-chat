@@ -15,7 +15,7 @@ primary_region = 'arn'
   processes = ["app"]
 
 [vm]
-  size = "a100-40gb"
+  size = "performance-2x"
 
 [mounts]
   source = "models"
