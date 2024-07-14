@@ -6,7 +6,6 @@ import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.testcontainers.context.ImportTestcontainers;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.ollama.OllamaContainer;
 
