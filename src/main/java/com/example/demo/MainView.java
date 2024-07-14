@@ -5,10 +5,15 @@ import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
+import com.vaadin.flow.component.page.WebStorage;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinRequest;
+import io.github.amithkoujalgi.ollama4j.core.OllamaAPI;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.*;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.ollama.api.OllamaApi;
+import org.springframework.ai.ollama.api.OllamaOptions;
 import org.vaadin.firitin.components.messagelist.MarkdownMessage;
 
 import java.util.ArrayList;
@@ -17,6 +22,7 @@ import java.util.ArrayList;
 public class MainView extends VerticalLayout {
 
     private final ArrayList<Message> chatHistory = new ArrayList<>();
+    private String model;
 
     VerticalLayout messageList = new VerticalLayout();
     Scroller messageScroller = new Scroller(messageList);
@@ -33,7 +39,10 @@ public class MainView extends VerticalLayout {
         chatHistory.add(new SystemMessage("Answer politely to user. When user asks you about Vaadin, reply in bro style. Always show a piece a code."));
 
         // Init the client
-        ChatClient chatClient = chatClientBuilder.build();
+        ChatClient chatClient = chatClientBuilder
+                .defaultOptions(OllamaOptions.create()
+                    .withModel(getUserSelectedModel())
+                    .withTemperature(0.5f)).build();
 
         // Pass user input to chatClient
         messageInput.addSubmitListener(ev -> {
@@ -53,6 +62,17 @@ public class MainView extends VerticalLayout {
                     .subscribe(reply::appendMarkdownAsync);
             reply.scrollIntoView();
         });
+
+        messageInput.setTooltipText("Using model "+getUserSelectedModel());
+
+        WebStorage.getItem(WebStorage.Storage.SESSION_STORAGE,"spring-ai-demo.model", v -> {
+            model = v;
+            messageInput.setTooltipText("Using model "+getUserSelectedModel());
+        });
+    }
+
+    private String getUserSelectedModel() {
+        return model == null || model.isEmpty()? OllamaOptions.DEFAULT_MODEL: model;
     }
 
     @Push
