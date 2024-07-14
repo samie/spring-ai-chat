@@ -96,6 +96,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.github.amithkoujalgi</groupId>
+			<artifactId>ollama4j</artifactId>
+			<version>1.0.70</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
