@@ -33,7 +33,7 @@ public class MainView extends VerticalLayout {
         messageInput.setWidthFull();
 
         // Add system message to help the AI to behave
-        chatHistory.add(new SystemMessage("Answer politely to user. When user asks you about Vaadin, reply in bro style. Always show a piece a code."));
+        chatHistory.add(new SystemMessage("Answer politely to user. For coding task answer with code only and do not explain."));
 
         // Init the client
         ChatClient chatClient = chatClientBuilder
