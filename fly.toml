@@ -16,7 +16,7 @@ primary_region = 'ord'
 
 [vm]
   size = "l40s"
-  memory = "8gb"
+  memory = "20gb"
 
 [mounts]
   source = "models"
