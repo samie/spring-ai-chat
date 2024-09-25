@@ -4,7 +4,7 @@
 #
 
 app = 'spring-ai-chat'
-primary_region = 'arn'
+primary_region = 'ord'
 
 [http_service]
   internal_port = 8080
@@ -15,7 +15,7 @@ primary_region = 'arn'
   processes = ["app"]
 
 [vm]
-  size = "performance-2x"
+  size = "l40s"
   memory = "8gb"
 
 [mounts]
