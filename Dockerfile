@@ -1,4 +1,4 @@
-FROM ollama/ollama:0.2.1 AS base
+FROM ollama/ollama:0.3.11 AS base
 
 # Install Java runtime to base using openjdk:23-ea-21-jdk-slim layers
 RUN /bin/sh -c set -eux; apt-get update; apt-get upgrade -y; apt-get install -y --no-install-recommends ca-certificates p11-kit wget sudo; rm -rf /var/lib/apt/lists/*
