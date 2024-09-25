@@ -16,7 +16,7 @@ primary_region = 'arn'
 
 [vm]
   size = "performance-2x"
-  memory = "6gb"
+  memory = "8gb"
 
 [mounts]
   source = "models"
