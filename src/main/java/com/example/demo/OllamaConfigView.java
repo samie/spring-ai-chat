@@ -11,6 +11,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.WebStorage;
 import com.vaadin.flow.component.select.Select;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.Route;
@@ -108,10 +109,10 @@ public class OllamaConfigView extends VerticalLayout {
     private Component createForm(ModelDetail modelDetail) {
         FormLayout form = new FormLayout();
 
-        TextField licenseField = new TextField("License", modelDetail.getLicense(), "");
+        TextArea licenseField = new TextArea("License", modelDetail.getLicense(), "");
         licenseField.setReadOnly(true);
 
-        TextField modelFileField = new TextField("Model File", modelDetail.getModelFile(), "");
+        TextArea modelFileField = new TextArea("Model File", modelDetail.getModelFile(), "");
         modelFileField.setReadOnly(true);
 
         TextField parametersField = new TextField("Parameters", ""+modelDetail.getParameters(), "");
@@ -186,6 +187,7 @@ public class OllamaConfigView extends VerticalLayout {
             setClassName("loader");
             Element styles = new Element("style");
             styles.setText("""
+                    .loader {
                       width: var(--lumo-size-m);
                       height: calc(var(--lumo-size-m)/4);
                       background: var(--lumo-primary-text-color);
@@ -224,7 +226,28 @@ public class OllamaConfigView extends VerticalLayout {
                         transform: translate(-50%, -5px);
                       }
                     }
-                    """);
+                   .progress-bar {
+                        width: 100%;
+                        height: 30px;
+                        background: linear-gradient(90deg, #4caf50 0%, #4caf50 var(--progress), #f0f0f0 var(--progress), #f0f0f0 100%);
+                        position: relative;
+                        overflow: hidden;
+                   }
+                   .progress-bar::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.0) 100%);
+                        animation: chase 2s infinite linear;
+                   }
+                   @keyframes chase {
+                        0% { transform: translateX(-100%); }
+                        100% { transform: translateX(100%); }
+                   }
+                   """);
             getElement().appendChild(styles);
         }
 
